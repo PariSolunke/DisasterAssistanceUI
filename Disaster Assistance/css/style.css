@@ -1,0 +1,33 @@
+.btn{
+    margin-top:1%;
+
+}
+#home{
+    margin-top:5%;
+}
+#askfh{
+    margin-top:1%;
+  display: none;  
+}
+#offh{
+    margin-top:1%;
+    display:none;
+}
+#mapdiv{
+    margin-top:2%;
+    display:none;
+}
+#map{
+    height: 450px;
+
+    margin: auto;
+}
+.selected{
+    z-index: -10;
+    
+}
+#offhdiv,#askfhdiv{
+    margin-top: 1%;
+height: 700px;
+}
+#askfhdiv{float: right;}

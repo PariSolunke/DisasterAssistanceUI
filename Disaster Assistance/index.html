@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Disaster Assistance</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+ 
+
+    
+  </head>
+  <body>
+    
+<div class="container" id="home">
+        <div class="row">
+        <div class="col-sm-0 col-md-2"></div>
+        <button type="button" class="askbtn btn btn-dark col-sm-4 col-md-2">Ask for Help</button>
+        <div class="col-sm-12 col-md-4"></div>
+        <button type="button" class="offbtn btn btn-dark col-sm-4 col-md-2">Offer Help</button>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-5"></div>
+        <button type="button" class="btn btn-dark col-sm-4 col-md-2">Edit/Remove Entry</button>
+    </div>
+    <div class="row">
+    <div class="col-sm-12 col-md-5"></div>
+    <button type="button" id="mapbtn" class="btn btn-dark col-sm-4 col-md-2">Neighbourhood Map</button>
+    </div>  
+</div>
+
+<div class="container" id="askfh">
+    <input class="homebtn btn btn-dark" type="button" id="left" value="&larr;">
+    <div class="row">
+    <div class="col-sm-0 col-md-2"></div>
+    <button type="button" class="askbtn btn btn-info col-sm-4 col-md-2 selected">Ask for Help</button>
+    <div class="col-sm-12 col-md-4"></div>
+    <button type="button" class="offbtn btn btn-dark col-sm-4 col-md-2">Offer Help</button>
+  </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-0"></div>
+      <div id="askfhdiv" class="overflow-auto col-sm-12 col-md-6" style="border:1px solid #cecece;">
+      
+      AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>
+      </div>
+      
+    </div>
+
+ 
+</div>
+
+<div class="container" id="offh">
+    <input class="homebtn btn btn-dark" type="button" id="left" value="&larr;">
+
+    <div class="row">
+      <div class="col-sm-0 col-md-2"></div>
+      <button type="button" class="askbtn btn btn-dark col-sm-4 col-md-2">Ask for Help</button>
+      <div class="col-sm-12 col-md-4"></div>
+      <button type="button" class="off btn btn btn-info col-sm-4 col-md-2 selected">Offer Help</button>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-6"></div>
+      <div id="offhdiv" class="overflow-auto col-sm-12 col-md-6" style="border:1px solid #cecece;">
+      
+      AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>
+      </div>
+      
+    </div>
+ 
+</div>
+
+
+<div id="mapdiv">
+    <input class="homebtn btn btn-dark" type="button" id="left" value="&larr;">
+    <div class="col-sm-12"></div>
+    <div id="map"  class="col-sm-8 col-md-6"></div>
+ 
+</div>
+    
+    
+      
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+    
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>  
+  </body>
+</html>
