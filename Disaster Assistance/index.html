@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
- 
-
+    
     
   </head>
   <body>
@@ -44,13 +43,45 @@
       <div class="col-sm-12 col-md-0"></div>
       <div id="askfhdiv" class="overflow-auto col-sm-12 col-md-6" style="border:1px solid #cecece;">
       
-      AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>
+        <div style="text-align:center;"> <strong>People/Organisations offering help</strong> </div> 
+        <input style="margin: auto; margin-top: 3px;" type="text" placeholder="Add tags to filter by ZIP/type of help" class="form-control col-sm-10" id="tagip1">
+        <div class="col-sm-10" style="margin:auto; height: 35px;">
+         <div id="tags1"  style="display: inline-block;"></div>
+         <button style="margin-left:auto; margin-right:0;visibility: hidden;" id="clear1" type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>                           
+        </div>
+        
+
+
+        <div id="data1">
       </div>
+    
+    </div>
       
     </div>
 
- 
+    <div class="row">
+      <div class="col-sm-12 col-md-2"></div>
+      <button id="reqbtn" type="button" class="btn btn-danger col-sm-4 col-md-2">Custom Request</button>
+      
+
+    </div>
 </div>
+
+
+<div class="container" id="reqForm" style="display: none;">
+  <input class="askbtn btn btn-dark" type="button" id="left" value="&larr;">
+
+
+
+</div>
+
+<div class="container" id="helpForm" style="display: none;">
+  <input class="offbtn btn btn-dark" type="button" id="left" value="&larr;">
+
+</div>
+
 
 <div class="container" id="offh">
     <input class="homebtn btn btn-dark" type="button" id="left" value="&larr;">
@@ -59,16 +90,36 @@
       <div class="col-sm-0 col-md-2"></div>
       <button type="button" class="askbtn btn btn-dark col-sm-4 col-md-2">Ask for Help</button>
       <div class="col-sm-12 col-md-4"></div>
-      <button type="button" class="off btn btn btn-info col-sm-4 col-md-2 selected">Offer Help</button>
+      <button type="button" class="offbtn btn btn-info col-sm-4 col-md-2 selected">Offer Help</button>
     </div>
 
     <div class="row">
       <div class="col-sm-12 col-md-6"></div>
       <div id="offhdiv" class="overflow-auto col-sm-12 col-md-6" style="border:1px solid #cecece;">
+
+       <div style="text-align:center;"> <strong>People in need of help</strong> </div> 
+        <input style="margin: auto; margin-top: 3px;" type="text" placeholder="Add tags to filter by ZIP/type of help" class="form-control col-sm-10" id="tagip2">
+        <div class="col-sm-10" style="margin:auto; height: 35px;"> 
+        
+          <div id="tags2" style="display: inline-block;"></div>
+          <button style="margin-left:auto; margin-right:0;visibility: hidden;" id="clear2" type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>    
+        </div>
+
+      <div id="data2">
+        
+     </div>
+
+
+    </div>  
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-8"></div>
+      <button id="helpbtn" type="button" class="btn btn-danger col-sm-4 col-md-2">Become a Provider</button>
       
-      AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>AA <br> aaa<br>
-      </div>
-      
+
     </div>
  
 </div>
@@ -88,6 +139,9 @@
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
     
+
+
+
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
