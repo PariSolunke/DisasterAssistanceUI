@@ -1,3 +1,14 @@
+var requests=[{type:"First-Aid",address:"221 B Baker Street, Chicago",zip:"60657",contact:"3213213211",description:"Need First Aid for an arm injury"},
+{type:"Shelter",address:"4 Privet Drive, Chicago",zip:"60607",contact:"1231231231",description:"Need a place for an emergency shelter"},
+{type:"Food",address:"ABC N Halsted Street, Chicago",zip:"60657",contact:"1234567891",description:"Running out of food"},
+{type:"Water",address:"XYZ S Halsted Street, Chicago",zip:"60607",contact:"9876543210",description:"Need Drinking Water"},
+{type:"Medicines",address:"LMN N Michgan Ave, Chicago",zip:"60606",contact:"1414151516",description:"-"},
+{type:"Food",address:"ABC N Western Ave, Chicago",zip:"60636",contact:"1516141312",description:"Out of food"},
+{type:"Food",address:"EFG W Fullerton Ave, Chicago",zip:"60609",contact:"6543210987",description:"Need Food"},
+{type:"Water",address:"LMN W Diversey Ave, Chicago",zip:"60607",contact:"5645312345",description:"Drinking Water"},
+{type:"Shelter",address:"XYZ S Ashland Ave, Chicago",zip:"12345",contact:"1212343412",description:"Home is waterlogged, need shelter"},
+{type:"Water",address:"EFG S Damen Ave, Chicago",zip:"54321",contact:"9090890908",description:"Need drinking water"}];
+
 var helpers = [{name:"John Doe",type:"Food",address:"221B Baker Stret, Chicago",zip:"60607",contact:"1234567890",description:"Lots of Bread and Rice"},
 {name:"Richard Roe",type:"Water",address:"ABC Armitage Ave, Chicago",zip:"60657",contact:"1212121212",description:"We're distributing water, 1 quart per person"},
 {name:"Elaine Benes",type:"Shelter",address:"ABC Western Ave, Chicago",zip:"66666",contact:"9876543211",description:"Tornado shelter in the basement"},
@@ -10,16 +21,7 @@ var helpers = [{name:"John Doe",type:"Food",address:"221B Baker Stret, Chicago",
 {name:"Hulk",type:"Food",address:"LMN Diversey Pkway, Chicago",zip:"53454",contact:"1928374656",description:"-"}];
 
 
-var requests=[{type:"First-Aid",address:"221 B Baker Street, Chicago",zip:"60657",contact:"3213213211",description:"Need First Aid for an arm injury"},
-{type:"Shelter",address:"4 Privet Drive, Chicago",zip:"60607",contact:"1231231231",description:"Need a place for an emergency shelter"},
-{type:"Food",address:"ABC N Halsted Street, Chicago",zip:"60657",contact:"1234567891",description:"Running out of food"},
-{type:"Water",address:"XYZ S Halsted Street, Chicago",zip:"60607",contact:"9876543210",description:"Need Drinking Water"},
-{type:"Medicines",address:"LMN N Michgan Ave, Chicago",zip:"60606",contact:"1414151516",description:"-"},
-{type:"Food",address:"ABC N Western Ave, Chicago",zip:"60636",contact:"1516141312",description:"Out of food"},
-{type:"Food",address:"EFG W Fullerton Ave, Chicago",zip:"60609",contact:"6543210987",description:"Need Food"},
-{type:"Water",address:"LMN W Diversey Ave, Chicago",zip:"60607",contact:"5645312345",description:"Drinking Water"},
-{type:"Shelter",address:"XYZ S Ashland Ave, Chicago",zip:"12345",contact:"1212343412",description:"Home is waterlogged, need shelter"},
-{type:"Water",address:"EFG S Damen Ave, Chicago",zip:"54321",contact:"9090890908",description:"Need drinking water"}];
+
 
 var custHelpers=[];
 var custRequests=[];
@@ -69,7 +71,8 @@ updateRequests();
     });
 
 
-    document.getElementById("reqbtn").addEventListener("click", function() {
+    document.getElementById("reqbtn").addEventListener("click", function() 
+    {
       document.getElementById("home").style.display = "none";
       document.getElementById("offh").style.display = "none";
       document.getElementById("askfh").style.display = "none";
@@ -100,6 +103,106 @@ updateRequests();
         
             
 });
+
+
+document.getElementById("submit1").addEventListener("click", function() 
+    {
+     if(document.getElementById("ipType1").value.length<1)
+      {
+        alert("Type cannot be empty");
+      }
+      else if(document.getElementById("ipAdd1").value.length<1)
+      {
+        alert("Address cannot be empty");
+      }
+      else if(document.getElementById("ipZip1").value.length<5)
+      {
+        alert("Zip cannot be less than 5 characters");
+      }
+      else if(document.getElementById("ipPhone1").value.length<10)
+      {
+        alert("Phone number cannot be less than 10 characters");
+      }  
+
+
+      
+      else
+      {  
+        
+      custRequests.push({type:document.getElementById("ipType1").value, address:document.getElementById("ipAdd1").value, zip:document.getElementById("ipZip1").value,contact:document.getElementById("ipPhone1").value,description:document.getElementById("ipDesc1").value});
+      
+      alert("Pin for your request is 1234. The request has been posted and will be visible to help providers.");
+      updateRequests();
+      document.getElementById("home").style.display = "none"; 
+      document.getElementById("offh").style.display = "none";
+      document.getElementById("askfh").style.display = "block";
+      document.getElementById("reqForm").style.display = "none";
+      document.getElementById("helpForm").style.display = "none";
+      document.getElementById("mapdiv").style.display = "none";
+      document.getElementById("ipType1").value="";
+      document.getElementById("ipPhone1").value="";
+      document.getElementById("ipDesc1").value="";
+      document.getElementById("ipZip1").value="";
+      document.getElementById("ipAdd1").value="";
+
+      }
+    });
+
+
+
+
+    document.getElementById("submit2").addEventListener("click", function() 
+    {
+     
+      if(document.getElementById("ipName2").value.length<1)
+      {
+        alert("Name Cannot be empty");
+      }  
+      else if(document.getElementById("ipType2").value.length<1)
+      {
+        alert("Type cannot be empty");
+      }
+      else if(document.getElementById("ipAdd2").value.length<1)
+      {
+        alert("Address cannot be empty");
+      }
+      else if(document.getElementById("ipZip2").value.length<5)
+      {
+        alert("Zip cannot be less than 5 characters");
+      }
+      else if(document.getElementById("ipPhone2").value.length<10)
+      {
+        alert("Phone number cannot be less than 10 characters");
+      }  
+     
+
+      
+      else
+      {  
+        
+      custHelpers.push({name:document.getElementById("ipName2").value,type:document.getElementById("ipType2").value, address:document.getElementById("ipAdd2").value, zip:document.getElementById("ipZip2").value,contact:document.getElementById("ipPhone2").value,description:document.getElementById("ipDesc2").value});
+      
+      alert("Pin for your help offer is 1234. The offer to help has been posted and will be visible to help seekers.");
+      updateHelpers();
+      document.getElementById("home").style.display = "none"; 
+      document.getElementById("offh").style.display = "block";
+      document.getElementById("askfh").style.display = "none";
+      document.getElementById("reqForm").style.display = "none";
+      document.getElementById("helpForm").style.display = "none";
+      document.getElementById("mapdiv").style.display = "none";
+
+      document.getElementById("ipName2").value="";
+      document.getElementById("ipType2").value="";
+      document.getElementById("ipPhone2").value="";
+      document.getElementById("ipDesc2").value="";
+      document.getElementById("ipZip2").value="";
+      document.getElementById("ipAdd2").value="";
+
+      }
+    });
+
+
+
 
 
 $("#tagip1").on('keyup', function (e) {
@@ -134,28 +237,34 @@ $("#tagip2").on('keyup', function (e) {
 
 function updateHelpers() {
   document.getElementById("data1").innerHTML="";
-  for(var i=0;i<helpers.length;i++)
+  var allhelpers;
+  if(custHelpers.length>0)
+  allhelpers=custHelpers.concat(helpers);
+  else
+  allhelpers=helpers;
+  for(var i=0;i<allhelpers.length;i++)
   {
-    document.getElementById("data1").innerHTML+="Name: "+helpers[i].name+"<br>"+"Type: "+helpers[i].type+"<br>"+"Phone: "+helpers[i].contact+"<br>"+"Address: "+helpers[i].address+"<br>"+"Zip: "+helpers[i].zip+"<br>"+"Description: "+helpers[i].description+"<hr>"  ;
-
+    document.getElementById("data1").innerHTML+="Name: "+allhelpers[i].name+"<br>"+"Type: "+allhelpers[i].type+"<br>"+"Phone: "+allhelpers[i].contact+"<br>"+"Address: "+allhelpers[i].address+"<br>"+"Zip: "+allhelpers[i].zip+"<br>"+"Description: "+allhelpers[i].description+"<hr>"  ;
   }
   
 }
 
 function updateRequests() {
   document.getElementById("data2").innerHTML="";
-  for(var i=0;i<requests.length;i++)
+  var allrequests;
+  if(custRequests.length>0)
+  allrequests=custRequests.concat(requests);
+  else
+  allrequests=requests;
+  for(var i=0;i<allrequests.length;i++)
   {
-    document.getElementById("data2").innerHTML+="Type: "+requests[i].type+"<br>"+"Phone: "+requests[i].contact+"<br>"+"Address: "+requests[i].address+"<br>"+"Zip: "+requests[i].zip+"<br>"+"Description: "+requests[i].description+"<hr>"  ;
+    document.getElementById("data2").innerHTML+="Type: "+allrequests[i].type+"<br>"+"Phone: "+allrequests[i].contact+"<br>"+"Address: "+allrequests[i].address+"<br>"+"Zip: "+allrequests[i].zip+"<br>"+"Description: "+allrequests[i].description+"<hr>"  ;
 
   }
   
 }
 
 
-custHelpers.push({type:"water",description:""});
-custHelpers.push({type:"wasar",contact:"121213",description:""});
-console.log(custHelpers);
 
 /*
 var d;

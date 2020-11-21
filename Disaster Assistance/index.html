@@ -74,11 +74,97 @@
   <input class="askbtn btn btn-dark" type="button" id="left" value="&larr;">
 
 
+  <div class="form-group row" style="margin-top: 5%;">
+    <label for="ipType1" class="col-sm-2 col-form-label">Type</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="ipType1" placeholder="Type of Assistance Needed">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="ipAdd1" class="col-sm-2 col-form-label">Address</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="ipAdd1" placeholder="Where are you located?">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="ipZip1" class="col-sm-2 col-form-label">Zip</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="ipZip1" placeholder="Your 5 digit Zipcode" maxlength="5" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="ipPhone1" class="col-sm-2 col-form-label">Contact</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="ipPhone1" placeholder="Your 10 digit Phone Number"  maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="ipDesc1" class="col-sm-2 col-form-label">Description</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="ipDesc1" placeholder="Optional Additional Info" >
+    </div>
+  </div>
+
+  <input id="submit1" class="btn btn-primary" style="margin-top: 1%; float: right;" type="submit" value="Submit">
+
+
 
 </div>
 
 <div class="container" id="helpForm" style="display: none;">
   <input class="offbtn btn btn-dark" type="button" id="left" value="&larr;">
+
+  
+  <div class="form-group row" style="margin-top: 5%;">
+    <label for="ipName2" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="ipName2" placeholder="Your/Your Organisation's Name">
+    </div>
+  </div>
+
+
+  <div class="form-group row">
+    <label for="ipType2" class="col-sm-2 col-form-label">Type</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="ipType2" placeholder="What are you helping with?">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="ipAdd2" class="col-sm-2 col-form-label">Address</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="ipAdd2" placeholder="Where are you located?">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="ipZip2" class="col-sm-2 col-form-label">Zip</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="ipZip2" placeholder="Your 5 digit Zipcode" maxlength="5" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="ipPhone2" class="col-sm-2 col-form-label">Contact</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="ipPhone2" placeholder="Your 10 digit Phone Number"  maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="ipDesc2" class="col-sm-2 col-form-label">Description</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="ipDesc2" placeholder="Optional Additional Info" >
+    </div>
+  </div>
+
+  <input id="submit2" class="btn btn-primary" style="margin-top: 1%; float: right;" type="submit" value="Submit">
+
+
 
 </div>
 
