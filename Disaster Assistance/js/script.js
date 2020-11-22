@@ -22,7 +22,9 @@ var helpers = [{name:"John Doe",type:"Food",address:"221B Baker Stret, Chicago",
 
 
 
-
+var hlpflt=[];
+var reqflt=[];
+var f1n=0,f2n=0;
 var custHelpers=[];
 var custRequests=[];
 
@@ -208,24 +210,40 @@ document.getElementById("submit1").addEventListener("click", function()
 $("#tagip1").on('keyup', function (e) {
   if (e.key === 'Enter' || e.keyCode === 13) 
   {
-      var filter=document.getElementById("tagip1").value;
+    if(document.getElementById("tagip1").value.length>0)
+    {
+      if(hlpflt.length<4)
+      {
+      hlpflt.push(document.getElementById("tagip1").value);
+      document.getElementById("tags1").innerHTML +=  "<span class='tags' style='border:1px solid black;'>"+document.getElementById("tagip1").value+"</span>";
       document.getElementById("tagip1").value = "";
-      document.getElementById("tags1").innerHTML =  "<span style='border:1px solid black;'>"+filter+"</span>";
-      document.getElementById("clear1").style.visibility =  "visible";
+      document.getElementById("clear1").style.visibility =  "visible"; 
       
-      ;
+      }
+    else{
+      alert("Maximum 4 tags allowed, clear by clicking on the trash icon");
+    }
+    }
   }
 });
 
 $("#tagip2").on('keyup', function (e) {
     if (e.key === 'Enter' || e.keyCode === 13) 
     {
-      var filter=document.getElementById("tagip2").value;
+      if(document.getElementById("tagip2").value.length>0)
+      {
+        if(reqflt.length<4)
+        {
+        reqflt.push(document.getElementById("tagip2").value);
+        document.getElementById("tags2").innerHTML +=  "<span class='tags' style='border:1px solid black;'>"+document.getElementById("tagip2").value+"</span>";
         document.getElementById("tagip2").value = "";
-        document.getElementById("tags2").innerHTML = "<span style='border:1px solid black;'>"+filter+"</span>";
-        document.getElementById("clear2").style.visibility =  "visible";
-
-
+        document.getElementById("clear2").style.visibility =  "visible"; 
+        
+        }
+      else{
+        alert("Maximum 4 tags allowed, clear by clicking on the trash icon");
+      }
+      }
     }
 });
 
