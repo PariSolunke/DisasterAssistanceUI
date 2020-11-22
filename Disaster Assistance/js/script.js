@@ -24,7 +24,6 @@ var helpers = [{name:"John Doe",type:"Food",address:"221B Baker Stret, Chicago",
 
 var hlpflt=[];
 var reqflt=[];
-var f1n=0,f2n=0;
 var custHelpers=[];
 var custRequests=[];
 
@@ -41,7 +40,6 @@ updateRequests();
     document.getElementById("askfh").style.display = "block";
     document.getElementById("reqForm").style.display = "none";
     document.getElementById("helpForm").style.display = "none";
-
     });
 
 
@@ -127,12 +125,9 @@ document.getElementById("submit1").addEventListener("click", function()
       }  
 
 
-      
       else
       {  
-        
       custRequests.push({type:document.getElementById("ipType1").value, address:document.getElementById("ipAdd1").value, zip:document.getElementById("ipZip1").value,contact:document.getElementById("ipPhone1").value,description:document.getElementById("ipDesc1").value});
-      
       alert("Pin for your request is 1234. The request has been posted and will be visible to help providers.");
       updateRequests();
       document.getElementById("home").style.display = "none"; 
@@ -146,16 +141,30 @@ document.getElementById("submit1").addEventListener("click", function()
       document.getElementById("ipDesc1").value="";
       document.getElementById("ipZip1").value="";
       document.getElementById("ipAdd1").value="";
-
       }
     });
 
+    document.getElementById("clear1").addEventListener("click", function() 
+    {
+      hlpflt=[];
+      document.getElementById("clear1").style.visibility =  "hidden"; 
+      document.getElementById("tags1").innerHTML="";
+      updateHelpers();
 
+    });
+
+    document.getElementById("clear2").addEventListener("click", function() 
+    {
+      reqflt=[];
+      document.getElementById("clear2").style.visibility =  "hidden"; 
+      document.getElementById("tags2").innerHTML="";
+      updateRequests();
+
+    });
 
 
     document.getElementById("submit2").addEventListener("click", function() 
     {
-     
       if(document.getElementById("ipName2").value.length<1)
       {
         alert("Name Cannot be empty");
@@ -178,7 +187,6 @@ document.getElementById("submit1").addEventListener("click", function()
       }  
      
 
-      
       else
       {  
         
@@ -218,10 +226,10 @@ $("#tagip1").on('keyup', function (e) {
       document.getElementById("tags1").innerHTML +=  "<span class='tags' style='border:1px solid black;'>"+document.getElementById("tagip1").value+"</span>";
       document.getElementById("tagip1").value = "";
       document.getElementById("clear1").style.visibility =  "visible"; 
-      
+      updateHelpers();
       }
     else{
-      alert("Maximum 4 tags allowed, clear by clicking on the trash icon");
+      alert("Maximum 4 tags allowed, clear by clicking on the cross icon");
     }
     }
   }
@@ -238,10 +246,10 @@ $("#tagip2").on('keyup', function (e) {
         document.getElementById("tags2").innerHTML +=  "<span class='tags' style='border:1px solid black;'>"+document.getElementById("tagip2").value+"</span>";
         document.getElementById("tagip2").value = "";
         document.getElementById("clear2").style.visibility =  "visible"; 
-        
+        updateRequests();
         }
       else{
-        alert("Maximum 4 tags allowed, clear by clicking on the trash icon");
+        alert("Maximum 4 tags allowed, clear by clicking on the cross icon");
       }
       }
     }
@@ -260,6 +268,23 @@ function updateHelpers() {
   allhelpers=custHelpers.concat(helpers);
   else
   allhelpers=helpers;
+
+  if(hlpflt.length>0)
+  {
+  allhelpers = jQuery.grep(allhelpers, function (n) 
+  {
+    if(hlpflt.length==1)
+    return (!(n.type.toUpperCase().search(hlpflt[0].toUpperCase(),'g')!=-1||n.zip.search(hlpflt[0],'g')!=-1||n.address.toUpperCase().search(hlpflt[0].toUpperCase(),'g')!=-1));
+    else if(hlpflt.length==2)
+    return (!(n.type.toUpperCase().search(hlpflt[0].toUpperCase(),'g')!=-1||n.zip.search(hlpflt[0].toUpperCase(),'g')!=-1||n.address.toUpperCase().search(hlpflt[0].toUpperCase(),'g')!=-1||n.type.toUpperCase().search(hlpflt[1].toUpperCase(),'g')!=-1||n.zip.search(hlpflt[1].toUpperCase(),'g')!=-1||n.address.toUpperCase().search(hlpflt[1].toUpperCase(),'g')!=-1));
+    else if(hlpflt.length==3)
+    return (!(n.type.toUpperCase().search(hlpflt[0].toUpperCase(),'g')!=-1||n.zip.search(hlpflt[0].toUpperCase(),'g')!=-1||n.address.toUpperCase().search(hlpflt[0].toUpperCase(),'g')!=-1||n.type.toUpperCase().search(hlpflt[1].toUpperCase(),'g')!=-1||n.zip.search(hlpflt[1].toUpperCase(),'g')!=-1||n.address.toUpperCase().search(hlpflt[1].toUpperCase(),'g')!=-1||n.type.toUpperCase().search(hlpflt[2].toUpperCase(),'g')!=-1||n.zip.search(hlpflt[2].toUpperCase(),'g')!=-1||n.address.toUpperCase().search(hlpflt[2].toUpperCase(),'g')!=-1));
+    else if(hlpflt.length==4)
+    return (!(n.type.toUpperCase().search(hlpflt[0].toUpperCase(),'g')!=-1  ||  n.zip.search(hlpflt[0].toUpperCase(),'g')!=-1 ||  n.address.toUpperCase().search(hlpflt[0].toUpperCase(),'g')!=-1 ||  n.type.toUpperCase().search(hlpflt[1].toUpperCase(),'g')!=-1  ||  n.zip.search(hlpflt[1].toUpperCase(),'g')!=-1 ||  n.address.toUpperCase().search(hlpflt[1].toUpperCase(),'g')!=-1 ||  n.type.toUpperCase().search(hlpflt[2].toUpperCase(),'g')!=-1||n.zip.search(hlpflt[2].toUpperCase(),'g')!=-1||n.address.toUpperCase().search(hlpflt[2].toUpperCase(),'g')!=-1||n.type.toUpperCase().search(hlpflt[3].toUpperCase(),'g')!=-1||n.zip.search(hlpflt[3].toUpperCase(),'g')!=-1||n.address.toUpperCase().search(hlpflt[3].toUpperCase(),'g')!=-1));
+
+  },true);
+  }
+
   for(var i=0;i<allhelpers.length;i++)
   {
     document.getElementById("data1").innerHTML+="Name: "+allhelpers[i].name+"<br>"+"Type: "+allhelpers[i].type+"<br>"+"Phone: "+allhelpers[i].contact+"<br>"+"Address: "+allhelpers[i].address+"<br>"+"Zip: "+allhelpers[i].zip+"<br>"+"Description: "+allhelpers[i].description+"<hr>"  ;
@@ -274,6 +299,25 @@ function updateRequests() {
   allrequests=custRequests.concat(requests);
   else
   allrequests=requests;
+
+
+  if(reqflt.length>0)
+  {
+  allrequests = jQuery.grep(allrequests, function (n) 
+  {
+    if(reqflt.length==1)
+    return (!(n.type.toUpperCase().search(reqflt[0].toUpperCase(),'g')!=-1||n.zip.search(reqflt[0],'g')!=-1||n.address.toUpperCase().search(reqflt[0].toUpperCase(),'g')!=-1));
+    else if(reqflt.length==2)
+    return (!(n.type.toUpperCase().search(reqflt[0].toUpperCase(),'g')!=-1||n.zip.search(reqflt[0].toUpperCase(),'g')!=-1||n.address.toUpperCase().search(reqflt[0].toUpperCase(),'g')!=-1||n.type.toUpperCase().search(reqflt[1].toUpperCase(),'g')!=-1||n.zip.search(reqflt[1].toUpperCase(),'g')!=-1||n.address.toUpperCase().search(reqflt[1].toUpperCase(),'g')!=-1));
+    else if(reqflt.length==3)
+    return (!(n.type.toUpperCase().search(reqflt[0].toUpperCase(),'g')!=-1||n.zip.search(reqflt[0].toUpperCase(),'g')!=-1||n.address.toUpperCase().search(reqflt[0].toUpperCase(),'g')!=-1||n.type.toUpperCase().search(reqflt[1].toUpperCase(),'g')!=-1||n.zip.search(reqflt[1].toUpperCase(),'g')!=-1||n.address.toUpperCase().search(reqflt[1].toUpperCase(),'g')!=-1||n.type.toUpperCase().search(reqflt[2].toUpperCase(),'g')!=-1||n.zip.search(reqflt[2].toUpperCase(),'g')!=-1||n.address.toUpperCase().search(reqflt[2].toUpperCase(),'g')!=-1));
+    else if(reqflt.length==4)
+    return (!(n.type.toUpperCase().search(reqflt[0].toUpperCase(),'g')!=-1  ||  n.zip.search(reqflt[0].toUpperCase(),'g')!=-1 ||  n.address.toUpperCase().search(reqflt[0].toUpperCase(),'g')!=-1 ||  n.type.toUpperCase().search(reqflt[1].toUpperCase(),'g')!=-1  ||  n.zip.search(reqflt[1].toUpperCase(),'g')!=-1 ||  n.address.toUpperCase().search(reqflt[1].toUpperCase(),'g')!=-1 ||  n.type.toUpperCase().search(reqflt[2].toUpperCase(),'g')!=-1||n.zip.search(reqflt[2].toUpperCase(),'g')!=-1||n.address.toUpperCase().search(reqflt[2].toUpperCase(),'g')!=-1||n.type.toUpperCase().search(reqflt[3].toUpperCase(),'g')!=-1||n.zip.search(reqflt[3].toUpperCase(),'g')!=-1||n.address.toUpperCase().search(reqflt[3].toUpperCase(),'g')!=-1));
+
+  },true);
+  }
+
+  
   for(var i=0;i<allrequests.length;i++)
   {
     document.getElementById("data2").innerHTML+="Type: "+allrequests[i].type+"<br>"+"Phone: "+allrequests[i].contact+"<br>"+"Address: "+allrequests[i].address+"<br>"+"Zip: "+allrequests[i].zip+"<br>"+"Description: "+allrequests[i].description+"<hr>"  ;
@@ -283,15 +327,6 @@ function updateRequests() {
 }
 
 
-
-/*
-var d;
-d[0].name="abc";
-d[0].type="req";
-d[1].type="off";
-d[1].name="abcdef"; 
-console.log(d);        
-*/
 var chiMap = L.map('map').setView([41.869348,-87.648419], 16);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -303,8 +338,25 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: 'pk.eyJ1IjoicGFyaXNvbHVua2UiLCJhIjoiY2tocTE2cTVxMDF5aDJ4cXF6cXNrYzZjOSJ9.fFttCiuY-CT4ksQEmbdMlw'
 }).addTo(chiMap);
 
+var legend = L.control({ position: "bottomright" });
 
-var marker = L.marker([41.869348,-87.648419]).addTo(chiMap);
+legend.onAdd = function(chiMap) {
+  var div = L.DomUtil.create("div", "legend");
+  div.innerHTML += "<svg height='22' width='22'> <circle cx='11' cy='11' r='10' stroke='blue' stroke-width='1' fill='blue' /></svg> You are Here<br>";
+
+  div.innerHTML += "<svg height='22' width='22'> <circle cx='11' cy='11' r='10' stroke='red' stroke-width='1' fill='red' /></svg> Help Needed Here<br>";
+  div.innerHTML += "<svg height='22' width='22'> <circle cx='11' cy='11' r='10' stroke='green' stroke-width='1' fill='green' /></svg> Help Available Here<br>";
+
+  return div;
+};
+legend.addTo(chiMap);
+
+var marker = L.circle([41.869348,-87.648419] ,{    
+  color: 'blue',
+  fillColor: 'blue',
+  fillOpacity: 1,
+  radius:15
+}).addTo(chiMap);
 
 var circle1 = L.circle([41.867201,-87.651202], {
     color: '#f03',
@@ -312,7 +364,6 @@ var circle1 = L.circle([41.867201,-87.651202], {
     fillOpacity: 1,
     radius:15
 }).addTo(chiMap);
-
 var circle2 = L.circle([41.866935,-87.646844], {
   color: 'green',
   fillColor: 'green',
@@ -320,11 +371,9 @@ var circle2 = L.circle([41.866935,-87.646844], {
   radius:15
 }).addTo(chiMap);
 
-
 marker.bindPopup("You're Here!", {maxWidth: 800});
 circle1.bindPopup("<strong>Help Needed: Water</strong><br />Address: XYZ W Roosevelt St, Chicago<br>Zip:60607<br>Contact:123456789", {maxWidth: 800});
 circle2.bindPopup("<strong>Help Available: Food</strong><br />Address: XYZ W Roosevelt St, Chicago<br>Zip:60607<br>Contact:123456789", {maxWidth: 800});
-
 marker.on('mouseover', function(e){
   marker.openPopup();
 });
@@ -334,7 +383,6 @@ circle1.on('mouseover', function(e){
 circle2.on('mouseover', function(e){
   circle2.openPopup();
 });
-
 marker.on('mouseout', function(e){
   chiMap.closePopup();
 });
@@ -346,5 +394,4 @@ circle2.on('mouseout', function(e){
   
   chiMap.closePopup();
 });
-
 });

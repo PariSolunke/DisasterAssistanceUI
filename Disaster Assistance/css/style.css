@@ -46,3 +46,12 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.legend {
+    padding: 3px 3px;
+    background: white;
+    background: rgba(255, 255, 255, 0.5);
+  
+    line-height: 20px;
+    
+  }
