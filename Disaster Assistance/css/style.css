@@ -36,6 +36,15 @@ height: 700px;
 }
 #askfhdiv{float: right;}
 
+#editrmv{
+  margin-top:2%;
+  display:none;
+}
+
+/*#errow1{
+  margin-top: 20%
+}*/
+
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

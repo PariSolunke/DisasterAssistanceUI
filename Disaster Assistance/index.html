@@ -23,7 +23,7 @@
     </div>
     <div class="row">
         <div class="col-sm-12 col-md-5"></div>
-        <button type="button" class="btn btn-dark col-sm-4 col-md-2">Edit/Remove Entry</button>
+        <button type="button" id="erbtn" class="btn btn-dark col-sm-4 col-md-2">View/Remove Listings</button>
     </div>
     <div class="row">
     <div class="col-sm-12 col-md-5"></div>
@@ -69,6 +69,37 @@
     </div>
 </div>
 
+<div class="container" id="editrmv" style="display: none;">
+  <input class="homebtn btn btn-dark" type="button" id="left" value="&larr;">
+    <div class="form-group row" id= "errow1">
+    <label for="ipPhone" class="col-sm-2 col-form-label">Contact</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="ipPhone" placeholder="Your 10 digit Phone Number"  maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+    </div>
+  </div>
+
+  <div class="form-group row" id= "errow2">
+    <label for="ipPIN" class="col-sm-2 col-form-label">PIN</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="ipPIN" placeholder="A unique 4 digit pin was provided to your registered mobile number when you added a listing"  maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+    </div>
+  </div>
+
+   <input id="submit3" class="btn btn-primary" style="margin-top: 1%; float: right;" type="submit" value="Show Listings">
+</div>
+
+<div class="container" id="showlstng" style="display: none;">
+  <input class="homebtn btn btn-dark" type="button" id="left" value="&larr;">
+  <div  id="lstngs">
+
+   <!--    <input id="editlstng" class="btn btn-primary" style="margin-top: 1%; float: right;" type="submit" value="Edit Listing">
+     <input id="rmvlstng" class="btn btn-primary" style="margin-top: 1%; margin-right: 1% ;float: right;" type="submit" value="Remove Listing">  
+   -->
+<!-- <input id="editlstng">
+<input id="rmvlstng"> -->
+
+  </div>
+     </div>
 
 <div class="container" id="reqForm" style="display: none;">
   <input class="askbtn btn btn-dark" type="button" id="left" value="&larr;">

@@ -1,3 +1,4 @@
+//default request data
 var requests=[{type:"First-Aid",address:"221 B Baker Street, Chicago",zip:"60657",contact:"3213213211",description:"Need First Aid for an arm injury"},
 {type:"Shelter",address:"4 Privet Drive, Chicago",zip:"60607",contact:"1231231231",description:"Need a place for an emergency shelter"},
 {type:"Food",address:"ABC N Halsted Street, Chicago",zip:"60657",contact:"1234567891",description:"Running out of food"},
@@ -9,6 +10,7 @@ var requests=[{type:"First-Aid",address:"221 B Baker Street, Chicago",zip:"60657
 {type:"Shelter",address:"XYZ S Ashland Ave, Chicago",zip:"12345",contact:"1212343412",description:"Home is waterlogged, need shelter"},
 {type:"Water",address:"EFG S Damen Ave, Chicago",zip:"54321",contact:"9090890908",description:"Need drinking water"}];
 
+//default helper data
 var helpers = [{name:"John Doe",type:"Food",address:"221B Baker Stret, Chicago",zip:"60607",contact:"1234567890",description:"Lots of Bread and Rice"},
 {name:"Richard Roe",type:"Water",address:"ABC Armitage Ave, Chicago",zip:"60657",contact:"1212121212",description:"We're distributing water, 1 quart per person"},
 {name:"Elaine Benes",type:"Shelter",address:"ABC Western Ave, Chicago",zip:"66666",contact:"9876543211",description:"Tornado shelter in the basement"},
@@ -21,17 +23,23 @@ var helpers = [{name:"John Doe",type:"Food",address:"221B Baker Stret, Chicago",
 {name:"Hulk",type:"Food",address:"LMN Diversey Pkway, Chicago",zip:"53454",contact:"1928374656",description:"-"}];
 
 
-
+//variables for filters, user added data and search functionality
 var hlpflt=[];
 var reqflt=[];
 var custHelpers=[];
 var custRequests=[];
+var searchedListings = [];
+var indexListings=[];
+
+
 
 $(function() {
 
+//update the list of helpers and help requests at the start
 updateHelpers();
 updateRequests();
 
+//listeners for all ask for help buttons
 [...document.querySelectorAll('.askbtn')].forEach(function(item) {
   item.addEventListener('click', function() {
     document.getElementById("home").style.display = "none";
@@ -40,12 +48,14 @@ updateRequests();
     document.getElementById("askfh").style.display = "block";
     document.getElementById("reqForm").style.display = "none";
     document.getElementById("helpForm").style.display = "none";
+    document.getElementById("editrmv").style.display = "none";
+    document.getElementById("showlstng").style.display = "none";
     });
 
 
    });
 
-
+//listeners for all offer help buttons
 [...document.querySelectorAll('.offbtn')].forEach(function(item) {
     item.addEventListener('click', function() {
       document.getElementById("home").style.display = "none";
@@ -54,11 +64,13 @@ updateRequests();
       document.getElementById("askfh").style.display = "none";
       document.getElementById("reqForm").style.display = "none";
       document.getElementById("helpForm").style.display = "none";
+      document.getElementById("editrmv").style.display = "none";
+      document.getElementById("showlstng").style.display = "none";
       });
   
       
      });
-
+//listener for neighborhood map button
      document.getElementById("mapbtn").addEventListener("click", function() {
       document.getElementById("home").style.display = "none";
       document.getElementById("offh").style.display = "none";
@@ -66,11 +78,27 @@ updateRequests();
       document.getElementById("reqForm").style.display = "none";
       document.getElementById("helpForm").style.display = "none";
       document.getElementById("mapdiv").style.display = "block";
+      document.getElementById("editrmv").style.display = "none";
+      document.getElementById("showlstng").style.display = "none";
 
       chiMap.invalidateSize(true) ;
     });
 
+//listener for view/remove listings button
+     document.getElementById("erbtn").addEventListener("click", function() {
+      document.getElementById("home").style.display = "none";
+      document.getElementById("offh").style.display = "none";
+      document.getElementById("askfh").style.display = "none";
+      document.getElementById("reqForm").style.display = "none";
+      document.getElementById("helpForm").style.display = "none";
+      document.getElementById("mapdiv").style.display = "none";
+      document.getElementById("editrmv").style.display = "block";
+      document.getElementById("showlstng").style.display = "none";
 
+      chiMap.invalidateSize(true) ;
+    });
+
+//listener for custom request button
     document.getElementById("reqbtn").addEventListener("click", function() 
     {
       document.getElementById("home").style.display = "none";
@@ -79,8 +107,11 @@ updateRequests();
       document.getElementById("reqForm").style.display = "block";
       document.getElementById("helpForm").style.display = "none";
       document.getElementById("mapdiv").style.display = "none";
+      document.getElementById("editrmv").style.display = "none";
+      document.getElementById("showlstng").style.display = "none";
     });
 
+//listener for become a provider button
     document.getElementById("helpbtn").addEventListener("click", function() {
       document.getElementById("home").style.display = "none";
       document.getElementById("offh").style.display = "none";
@@ -88,9 +119,11 @@ updateRequests();
       document.getElementById("reqForm").style.display = "none";
       document.getElementById("helpForm").style.display = "block";
       document.getElementById("mapdiv").style.display = "none";
+      document.getElementById("editrmv").style.display = "none";
+      document.getElementById("showlstng").style.display = "none";
     });
      
-
+//listener for all buttons pointing to home
 [...document.querySelectorAll('.homebtn')].forEach(function(item) {
           item.addEventListener('click', function() {
             document.getElementById("home").style.display = "block";
@@ -99,12 +132,14 @@ updateRequests();
             document.getElementById("mapdiv").style.display = "none";
             document.getElementById("reqForm").style.display = "none";
             document.getElementById("helpForm").style.display = "none";
+            document.getElementById("editrmv").style.display = "none";
+            document.getElementById("showlstng").style.display = "none";
             });
         
             
 });
 
-
+//listener for the submit button in custom requests
 document.getElementById("submit1").addEventListener("click", function() 
     {
      if(document.getElementById("ipType1").value.length<1)
@@ -136,6 +171,10 @@ document.getElementById("submit1").addEventListener("click", function()
       document.getElementById("reqForm").style.display = "none";
       document.getElementById("helpForm").style.display = "none";
       document.getElementById("mapdiv").style.display = "none";
+      document.getElementById("editrmv").style.display = "none";
+      document.getElementById("showlstng").style.display = "none";
+
+
       document.getElementById("ipType1").value="";
       document.getElementById("ipPhone1").value="";
       document.getElementById("ipDesc1").value="";
@@ -162,7 +201,7 @@ document.getElementById("submit1").addEventListener("click", function()
 
     });
 
-
+//listener for the submit button in become a provider
     document.getElementById("submit2").addEventListener("click", function() 
     {
       if(document.getElementById("ipName2").value.length<1)
@@ -200,6 +239,9 @@ document.getElementById("submit1").addEventListener("click", function()
       document.getElementById("reqForm").style.display = "none";
       document.getElementById("helpForm").style.display = "none";
       document.getElementById("mapdiv").style.display = "none";
+      document.getElementById("editrmv").style.display = "none";
+      document.getElementById("showlstng").style.display = "none";
+
 
       document.getElementById("ipName2").value="";
       document.getElementById("ipType2").value="";
@@ -211,10 +253,32 @@ document.getElementById("submit1").addEventListener("click", function()
       }
     });
 
+ // Listener for showlistings button
 
+    document.getElementById("submit3").addEventListener("click", function() 
+    {
+      if(document.getElementById("ipPhone").value.length<1)
+      {
+        alert("Contact Cannot be empty");
+      }  
+      else if(document.getElementById("ipPIN").value.length<1)
+      {
+        alert("Pin cannot be empty");
+      }
+      
+      
+      else
+      {  
+      document.getElementById("lstngs").innerHTML="";  
+      var contact = document.getElementById("ipPhone").value
+      var pin = document.getElementById("ipPIN").value
+      searchListings(contact)
+      populateListings()
+      
+      }
+    });
 
-
-
+//listener for the tags input in the requests section
 $("#tagip1").on('keyup', function (e) {
   if (e.key === 'Enter' || e.keyCode === 13) 
   {
@@ -234,7 +298,7 @@ $("#tagip1").on('keyup', function (e) {
     }
   }
 });
-
+//listener for the tags input in the helper section
 $("#tagip2").on('keyup', function (e) {
     if (e.key === 'Enter' || e.keyCode === 13) 
     {
@@ -255,12 +319,7 @@ $("#tagip2").on('keyup', function (e) {
     }
 });
 
-
-
-
-
-
-
+//update the list of helpers and display
 function updateHelpers() {
   document.getElementById("data1").innerHTML="";
   var allhelpers;
@@ -288,10 +347,12 @@ function updateHelpers() {
   for(var i=0;i<allhelpers.length;i++)
   {
     document.getElementById("data1").innerHTML+="Name: "+allhelpers[i].name+"<br>"+"Type: "+allhelpers[i].type+"<br>"+"Phone: "+allhelpers[i].contact+"<br>"+"Address: "+allhelpers[i].address+"<br>"+"Zip: "+allhelpers[i].zip+"<br>"+"Description: "+allhelpers[i].description+"<hr>"  ;
+    
   }
   
 }
 
+//update the list of help requests and display
 function updateRequests() {
   document.getElementById("data2").innerHTML="";
   var allrequests;
@@ -326,6 +387,134 @@ function updateRequests() {
   
 }
 
+
+function searchListings(contact){
+  // search for phone in custRequests and custHelpers
+  var searchcontact = contact
+ searchedListings=[];
+ indexListings=[];
+  for(var i in custRequests){
+    if(custRequests[i].contact == searchcontact)
+    {
+        searchedListings.push(custRequests[i]);
+        indexListings.push(i);
+        // break;
+    }
+}
+
+for(var i in custHelpers){
+    if(custHelpers[i].contact == searchcontact){
+        searchedListings.push(custHelpers[i]);
+        indexListings.push(i);
+        // break;
+    }
+}
+
+}
+
+//populate the user's listings
+function populateListings(){
+if(searchedListings.length==0)
+{
+  alert("No Listings found matching the entered phone/pin. Please check your credentials and try again");
+  document.getElementById("home").style.display = "none";
+  document.getElementById("editrmv").style.display = "block";
+  document.getElementById("ipPhone").value="";
+  document.getElementById("ipPIN").value="";
+      
+}
+else
+{
+for(var i=0;i<searchedListings.length;i++)
+  {
+    rmvlstng = document.createElement("input")
+    rmvlstng.id = "rmvlstng"+String(i)
+    rmvlstng.type = "button"
+    rmvlstng.class = "btn"
+    rmvlstng.style =  "color:white ;margin-top: 1%; margin-right: 1% ;float: right;background: red; background: rgba(214, 32, 32, 0.746);"
+    rmvlstng.value =  "Remove Listing"
+    rmvlstng.display = "true"
+    document.getElementById('lstngs').appendChild(rmvlstng);
+    if (searchedListings[i].name == null){
+          document.getElementById("lstngs").innerHTML+="<strong>Your Request for Help:</strong><br>Type: "+searchedListings[i].type+"<br>"+"Phone: "+searchedListings[i].contact+"<br>"+"Address: "+searchedListings[i].address+"<br>"+"Zip: "+searchedListings[i].zip+"<br>"+"Description: "+searchedListings[i].description+"<hr>"  ;
+    }
+    else
+    {
+          document.getElementById("lstngs").innerHTML+="<strong>Your Offer to Provide Help:</strong><br>Name: "+searchedListings[i].name+"<br>"+"Type: "+searchedListings[i].type+"<br>"+"Phone: "+searchedListings[i].contact+"<br>"+"Address: "+searchedListings[i].address+"<br>"+"Zip: "+searchedListings[i].zip+"<br>"+"Description: "+searchedListings[i].description+"<hr>"  ;
+
+    }
+   }
+   document.getElementById("home").style.display = "none"; 
+   document.getElementById("offh").style.display = "none";
+   document.getElementById("askfh").style.display = "none";
+   document.getElementById("reqForm").style.display = "none";
+   document.getElementById("helpForm").style.display = "none";
+   document.getElementById("mapdiv").style.display = "none";
+   document.getElementById("editrmv").style.display = "none";
+   document.getElementById("showlstng").style.display = "block";
+   document.getElementById("ipPhone").value="";
+   document.getElementById("ipPIN").value="";
+   removeEditListing()
+}
+
+}
+
+//add listeners to all remove buttons
+function removeEditListing(){
+
+  for(var i=0;i<searchedListings.length;i++)
+  {
+
+    document.getElementById("rmvlstng"+String(i)).addEventListener("click", function(e) 
+    {
+      
+      var deleteIndex=e.target.id.split('rmvlstng')[1];
+      if (searchedListings[deleteIndex].name == null){
+        deleteElement(deleteIndex,0);
+      }
+      else
+      {
+          deleteElement(deleteIndex,1);
+      }  
+    });
+  }
+
+}
+
+
+//Remove specified listings from those added by the user
+function deleteElement(deleteIndex,i){
+  var deleteThis=indexListings[deleteIndex];
+  if(i==0)
+  {
+    console.log("deleteIndex:"+deleteIndex)
+    console.log("Delete This:"+deleteThis);
+    console.log("Selected Req:"+JSON.stringify(custRequests[deleteThis]));
+    custRequests.splice(deleteThis,1);
+   console.log( "Post Splicing:"+JSON.stringify(custRequests));
+   updateRequests();
+  }
+  else
+  {
+    console.log("deleteIndex:"+deleteIndex)
+    console.log("Delete This:"+deleteThis);
+    console.log("Selected Off:"+custHelpers[deleteThis]);
+    custHelpers.splice(deleteThis,1);
+    console.log("Post Splicing:"+JSON.stringify(custHelpers))
+    updateHelpers();
+  }
+  alert("The selected Listing has been successfully removed");
+document.getElementById("home").style.display = "block"; 
+  document.getElementById("editrmv").style.display = "none";
+  document.getElementById("showlstng").style.display = "none";
+
+
+
+}
+
+
+
+//populate the map and add legend
 
 var chiMap = L.map('map').setView([41.869348,-87.648419], 16);
 
